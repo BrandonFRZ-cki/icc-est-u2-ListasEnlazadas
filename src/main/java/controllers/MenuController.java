@@ -3,8 +3,9 @@ package controllers;
 import views.ConsoleView;
 
 public class MenuController {
-    private ContactManager contactManager;
+    private ControllerDao contactManager;
     private ConsoleView consoleView;
+    private ControllerDao agenda;
     public MenuController(){}
     public void showMenu(){
         ConsoleView consoleView = new ConsoleView();
@@ -22,7 +23,9 @@ public class MenuController {
         consoleView.showMessage("Chau");
         printList();
     }
-    protected void addContact(){}
+    protected void addContact(){
+
+    }
     protected void findContact(){}
     protected void deleteContact(){}
     protected void printList(){}
