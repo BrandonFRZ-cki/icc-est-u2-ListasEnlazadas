@@ -55,6 +55,18 @@ public class LinkedList<T> {
         return current.getValue();
 
     }
+    public Contact findContactByValue(String name) {
+        Node<T> current = head;
+        Contact contactTemp = null;
+        while (current.getNext()!= null){
+            if (current.getNext().getValue().equals(name)) {
+                contactTemp = (Contact) current.getValue();
+                size--;
+            }
+        }
+        return contactTemp;
+
+    }
     public void print(){
         if (head == null) {
             System.out.println("END");

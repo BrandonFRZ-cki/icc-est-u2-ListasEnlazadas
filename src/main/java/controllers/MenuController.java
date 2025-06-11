@@ -1,5 +1,6 @@
 package controllers;
 
+import model.Contact;
 import views.ConsoleView;
 
 public class MenuController {
@@ -10,6 +11,7 @@ public class MenuController {
     public void showMenu(){
         ConsoleView consoleView = new ConsoleView();
         String opcion;
+        contactosIniciales();
         do {
             consoleView.displayMenu();
             opcion = consoleView.getInput("Opcion: ");
@@ -19,15 +21,30 @@ public class MenuController {
                 findContact();
             if(opcion.equalsIgnoreCase("c"))
                 deleteContact();
-        }while (!opcion.equals("d"));
+            if(opcion.equalsIgnoreCase("d"))
+                printList();
+        }while (!opcion.equals("e"));
         consoleView.showMessage("Chau");
-        printList();
+
     }
     protected void addContact(){
-
+        String nombre = consoleView.getInput("Nombre: ");
+        String phone = consoleView.getInput("Telefono: ");
+        Contact contact = new Contact(nombre, phone);
+        agenda.addContacta(contact);
     }
-    protected void findContact(){}
-    protected void deleteContact(){}
-    protected void printList(){}
-
+    protected void findContact(){
+        String nombre = consoleView.getInput("Nombre: ");
+        agenda.findContact(nombre);
+    }
+    protected void deleteContact(){
+        String nombre = consoleView.getInput("Nombre: ");
+        agenda.deleteContactByName(nombre);
+    }
+    protected void printList(){
+        agenda.printList();
+    }
+    public void contactosIniciales(){
+        agenda.contactosIniciales();
+    }
 }
