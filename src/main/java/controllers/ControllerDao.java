@@ -10,15 +10,20 @@ public class ControllerDao {
     }
 
     public void addContacta(Contact contact) {
-
+        contacts.appendToTail(contact);
     }
     public Contact findContact(String name) {
-        return null;
+        return contacts.findContactByValue(name);
     }
     public void deleteContactByName(String name) {
-
+        contacts.deletByValue(name);
     }
     public void printList() {
-
+        contacts.print();
+    }
+    public void contactosIniciales() {
+        contacts.appendToTail(new Contact("Erick", "25254"));
+        contacts.appendToTail(new Contact("John", "4545"));
+        contacts.appendToTail(new Contact("Brandon", "25254"));
     }
 }
