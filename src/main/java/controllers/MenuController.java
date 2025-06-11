@@ -7,9 +7,11 @@ public class MenuController {
     private ControllerDao contactManager;
     private ConsoleView consoleView;
     private ControllerDao agenda;
-    public MenuController(){}
+    public MenuController(){
+        this.agenda = new ControllerDao();
+        this.consoleView = new ConsoleView();
+    }
     public void showMenu(){
-        ConsoleView consoleView = new ConsoleView();
         String opcion;
         contactosIniciales();
         do {
