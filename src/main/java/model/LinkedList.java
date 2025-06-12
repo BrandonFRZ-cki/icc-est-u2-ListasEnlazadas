@@ -3,23 +3,21 @@ package model;
 public class LinkedList<T> {
     private Node<T> head;
     private int size = 0;
+    private Node<T> tail;
 
     public LinkedList() {
         this.head = null;
         this.size =0;
     }
     public void appendToTail(T value){
+        Node<T> newNode = new Node<>(value);
         if (head == null) {
-            head = new Node<>(value);
-            size++;
-            return;
+            head = newNode;
+            tail = newNode;
+        }else {
+            tail.setNext(newNode);
+            tail = newNode;
         }
-
-        Node<T> current = head;
-        while (current.getNext() != null) {
-            current = current.getNext();
-        }
-        current.setNext(new Node<>(value));
         size++;
     }
 
@@ -34,6 +32,9 @@ public class LinkedList<T> {
         Node<T> current = head;
         while (current.getNext()!= null){
             if (current.getNext().getValue().equals(value)) {
+                if (current.getNext() == tail){
+                    tail = current;
+                }
                 current.setNext(current.getNext().getNext());
                 size--;
                 return;
@@ -57,14 +58,16 @@ public class LinkedList<T> {
     }
     public Contact findContactByValue(String name) {
         Node<T> current = head;
-        Contact contactTemp = null;
-        while (current.getNext()!= null){
-            if (current.getNext().getValue().equals(name)) {
-                contactTemp = (Contact) current.getValue();
-                size--;
+        while (current != null) {
+            if (current.getValue() instanceof Contact) {
+                Contact contact = (Contact) current.getValue();
+                if (contact.getName().equals(name)) {
+                    return contact; //
+                }
             }
+            current = current.getNext();
         }
-        return contactTemp;
+        return null;
 
     }
     public void print(){
