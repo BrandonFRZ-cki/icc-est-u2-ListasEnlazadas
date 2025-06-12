@@ -13,10 +13,14 @@ public class ControllerDao {
         contacts.appendToTail(contact);
     }
     public Contact findContact(String name) {
-        return contacts.findContactByValue(name);
+        if (contacts != null){
+            return contacts.findContactByValue(name);
+        }
+        return null;
     }
     public void deleteContactByName(String name) {
-        contacts.deletByValue(name);
+        Contact tempContact = new Contact(name);
+        contacts.deletByValue(tempContact);
     }
     public void printList() {
         contacts.print();

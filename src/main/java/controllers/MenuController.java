@@ -33,15 +33,22 @@ public class MenuController {
         String nombre = consoleView.getInput("Nombre: ");
         String phone = consoleView.getInput("Telefono: ");
         Contact contact = new Contact(nombre, phone);
+        System.out.println("Contacto agendado" + contact);
         agenda.addContacta(contact);
     }
     protected void findContact(){
         String nombre = consoleView.getInput("Nombre: ");
-        agenda.findContact(nombre);
+        Contact encontrado = agenda.findContact(nombre);
+        if (encontrado != null){
+            consoleView.showMessage("Contacto encontrado" + encontrado);
+        }else {
+            consoleView.showMessage("No se encontro ningun contacto con ese nombre");
+        }
     }
     protected void deleteContact(){
         String nombre = consoleView.getInput("Nombre: ");
         agenda.deleteContactByName(nombre);
+        consoleView.showMessage("Contacto Eliminado");
     }
     protected void printList(){
         agenda.printList();
